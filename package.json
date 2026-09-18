@@ -2,14 +2,15 @@
   "name": "timelys13",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
+   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "test:fcf": "tsx lib/test-fcf.ts"
   },
   "dependencies": {
     "next": "16.3.5",
+    "playwright": "^1.63.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
@@ -21,6 +22,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
     "tailwindcss": "^4",
+    "tsx": "^4.23.13",
     "typescript": "^5"
   },
   "packageManager": "pnpm@11.20.0"
