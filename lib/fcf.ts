@@ -1,5 +1,5 @@
-import { chromium as playwright } from "playwright-core";
-import chromium from "@sparticuz/chromium";
+import { chromium } from "playwright-core";
+import sparticuzChromium from "@sparticuz/chromium";
 
 
 const TEAM_URL =
@@ -21,17 +21,10 @@ export async function getUpcomingMatches(): Promise<UpcomingMatch[]> {
 
   const isProduction = process.env.VERCEL === "1";
 
-  const browser = await playwright.launch({
+  const browser = await chromium.launch({
+    args: sparticuzChromium.args,
+    executablePath: await sparticuzChromium.executablePath(),
     headless: true,
-
-    ...(isProduction
-      ? {
-          args: chromium.args,
-          executablePath: await chromium.executablePath(),
-        }
-      : {
-          channel: "chromium",
-        }),
   });
 
   try {
