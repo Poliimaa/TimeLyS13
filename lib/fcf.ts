@@ -1,4 +1,6 @@
-import { chromium } from "playwright";
+import { chromium as playwright } from "playwright-core";
+import chromium from "@sparticuz/chromium";
+
 
 const TEAM_URL =
   "https://www.fcf.cat/ca/clubs/1018/categories/33719";
@@ -16,8 +18,20 @@ export interface UpcomingMatch {
 }
 
 export async function getUpcomingMatches(): Promise<UpcomingMatch[]> {
-  const browser = await chromium.launch({
+
+  const isProduction = process.env.VERCEL === "1";
+
+  const browser = await playwright.launch({
     headless: true,
+
+    ...(isProduction
+      ? {
+          args: chromium.args,
+          executablePath: await chromium.executablePath(),
+        }
+      : {
+          channel: "chromium",
+        }),
   });
 
   try {

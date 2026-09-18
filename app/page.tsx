@@ -1,5 +1,7 @@
 import UpcomingMatches from "@/components/upcomingMatches";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
   <div>
